@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="/home/a1kerr/Sandbox/Vue/test/Practice-App/node_modules/vue/dist/vue.js"></script>
+<body>
+    <h1>My Application</h1>
+    <hr>
+    <div id='app'>
+        <h2>From: My Application 1: Inside div</h2>
+        <my-component></my-component>
+        <my-component> the second </my-component>
+    </div>
+
+    <div id='app2'>
+        <h2>From: My Application 2: Inside div</h2>
+        <my-component></my-component>
+    </div>
+    
+</body>
+</html>
+
+<script>
+    const temp1 = `
+    <div>
+    <p>Hi I am a Vue Component :)</p>
+    <button @click='changeStatus'>Update</button>
+    <p>The status is: {{status}}</p>
+    </div>
+    `;
+    
+    var cmp1 = {
+        data: function(){
+            return {status: 'All Good',
+                toggle: true          
+            };
+        },
+        
+        template: temp1,
+        
+        methods: {
+            changeStatus(){
+                this.status = (this.status == 'critical') ? 'All Good' : 'critical' ;
+                console.log(this.status);
+            },
+        },
+    };
+
+new Vue({
+    el: '#app',
+
+    components: {
+        'my-component' : cmp1
+    }
+})
+
+new Vue({
+    el: '#app2',
+
+    components: {
+        'my-component' : cmp1
+    }
+})
+</script>
